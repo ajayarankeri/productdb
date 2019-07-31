@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.hcl.productdb.dto.ErrorResponse;
 
+
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	
@@ -37,4 +38,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	    }
 	
 	
+	
+	@ExceptionHandler(NoOrderFoundException.class)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	    public final ResponseEntity<ErrorResponse> noOrderFoundException(NoOrderFoundException ex, WebRequest request) {   
+		 List<String> details = new ArrayList<>();
+	        details.add(ex.getMessage());	        
+	        return new ResponseEntity<>(new ErrorResponse("Server Error", details,Integer.toString(302)), HttpStatus.NOT_FOUND);
+	    }
 }
