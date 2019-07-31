@@ -1,9 +1,10 @@
 package com.hcl.productdb.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hcl.productdb.dto.ProductsDto;
 import com.hcl.productdb.dto.ResponseDto;
@@ -18,4 +19,8 @@ public interface ProductService {
  public List<ProductsDto> productHistory() throws ResourceNotFoundException, NoOrderFoundException;
  
  public ProductsDto getLatestProductVersion(long id);
+
+ public	ResponseDto uploadFileDate(MultipartFile file) throws IOException;
+
+
 }
