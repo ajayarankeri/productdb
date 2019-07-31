@@ -12,11 +12,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Data;
 
 @Entity
-@Table(name="product_version")
+@Table(name="product_details")
 @Data
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property="productId")
 public class ProductVersion implements Serializable {
 	
 	/**
@@ -27,7 +31,7 @@ public class ProductVersion implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
-	private Long Id;
+	private Long id;
 	
 	@Column(name="product_name")
 	private String productName;

@@ -20,6 +20,6 @@ public class Product {
 	private Long productId;
 	
 	@Column(name="product_code")	
-	private String productCode;
+	private Long productCode;
 
 }
