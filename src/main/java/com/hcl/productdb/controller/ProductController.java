@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.hcl.productdb.exception.ColumnIndexMisMatchException;
 import com.hcl.productdb.exception.NoOrderFoundException;
 import com.hcl.productdb.exception.ResourceNotFoundException;
 import com.hcl.productdb.service.ProductService;
@@ -30,9 +31,9 @@ public class ProductController {
 	ProductService productService;
 	
 	@PostMapping("/uploadFile")
-    public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<Object> uploadFile(@RequestParam("file") MultipartFile file) throws IOException, ColumnIndexMisMatchException {
 		
-		return new ResponseEntity<>(productService.uploadFileDate(file),HttpStatus.OK);	
+		return new ResponseEntity<>(productService.uploadFileData(file),HttpStatus.OK);	
 		
 		
 	}

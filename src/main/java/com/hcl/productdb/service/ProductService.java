@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hcl.productdb.dto.ProductsDto;
 import com.hcl.productdb.dto.ResponseDto;
+import com.hcl.productdb.exception.ColumnIndexMisMatchException;
 import com.hcl.productdb.exception.NoOrderFoundException;
 import com.hcl.productdb.exception.ResourceNotFoundException;
 
@@ -20,7 +21,6 @@ public interface ProductService {
  
  public ProductsDto getLatestProductVersion(long id);
 
- public	ResponseDto uploadFileDate(MultipartFile file) throws IOException;
-
+ public	ResponseDto uploadFileData(MultipartFile file) throws IOException, ColumnIndexMisMatchException;
 
 }

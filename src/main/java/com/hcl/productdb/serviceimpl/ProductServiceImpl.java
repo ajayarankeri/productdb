@@ -15,6 +15,7 @@ import com.hcl.productdb.dto.ProductsDto;
 import com.hcl.productdb.dto.ResponseDto;
 import com.hcl.productdb.entity.Product;
 import com.hcl.productdb.entity.ProductVersion;
+import com.hcl.productdb.exception.ColumnIndexMisMatchException;
 import com.hcl.productdb.exception.NoOrderFoundException;
 import com.hcl.productdb.exception.ResourceNotFoundException;
 import com.hcl.productdb.repository.ProductRepository;
@@ -43,10 +44,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public ResponseDto uploadFileDate(MultipartFile file) throws IOException  {
+	public ResponseDto uploadFileData(MultipartFile file) throws  ColumnIndexMisMatchException,IOException {
 
-		List<Product> tempProductList = new ArrayList<Product>();
-		List<ProductVersion> tempProductVersionList = new ArrayList<ProductVersion>();
+		List<Product> tempProductList = new ArrayList<>();
+		List<ProductVersion> tempProductVersionList = new ArrayList<>();
 	    XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
 	    XSSFSheet worksheet = workbook.getSheetAt(0);
 
@@ -65,7 +66,6 @@ public class ProductServiceImpl implements ProductService {
 	        productVersion.setProductVersion((float) row.getCell(4).getNumericCellValue());
 	        productVersion.setProductId(product);
 	        
-	        
 	            tempProductList.add(product);  
 	            tempProductVersionList.add(productVersion);
 	           
@@ -73,10 +73,6 @@ public class ProductServiceImpl implements ProductService {
 	    
 	    productRepository.saveAll(tempProductList);
 	    productVersionRepository.saveAll(tempProductVersionList);
-	    System.out.println(tempProductList);
-	    System.out.println("====================================");
-	    System.out.println(tempProductVersionList);
-	    
 	    return new ResponseDto("sucess", 300, "Your File Uploaded Successfully");
 		
 	}
