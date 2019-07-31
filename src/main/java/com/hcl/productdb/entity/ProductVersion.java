@@ -1,4 +1,6 @@
 package com.hcl.productdb.entity;
+ 
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +17,13 @@ import lombok.Data;
 @Entity
 @Table(name="product_version")
 @Data
-public class ProductVersion {
+public class ProductVersion implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6460211118375582536L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
