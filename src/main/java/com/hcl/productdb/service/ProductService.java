@@ -26,7 +26,7 @@ public interface ProductService {
 
  public List<ProductsDto> productHistory() throws ResourceNotFoundException, NoOrderFoundException;
  
- public ProductsDto getLatestProductVersion(long id);
+ public ProductsDto getLatestProductVersion(long id) throws ResourceNotFoundException, NoOrderFoundException;
 
  public	ResponseDto uploadFileData(MultipartFile file) throws IOException, ColumnIndexMisMatchException;
 
